@@ -1,6 +1,6 @@
 ﻿CREATE TABLE "registry" (
-    "Longitude" DEC,
-    "Latitude" DEC,
+    "Longitude" FLOAT,
+    "Latitude" FLOAT,
     "Object_ID" INT,
     "Block_X" INT,
     "Block_Y" INT,
@@ -19,8 +19,8 @@
     "Markings" VARCHAR,
     "Date_Registered" DATE,
     "Residence" VARCHAR,
-    "District" DEC,
-    "PSA_Announcement_Number" DEC,
+    "District" INT,
+    "PSA_Announcement_Number" INT,
     "Block_Address" VARCHAR,
     "Quadrant" VARCHAR,
     "ZIP_Code" VARCHAR,
@@ -30,8 +30,8 @@
 );
 
 CREATE TABLE "unique_dates" (
-    "Longitude" DEC,
-    "Latitude" DEC,
+    "Longitude" FLOAT,
+    "Latitude" FLOAT,
     "Object_ID" INT,
     "Block_X" INT,
     "Block_Y" INT,
@@ -50,8 +50,8 @@ CREATE TABLE "unique_dates" (
     "Markings" VARCHAR,
     "Date_Registered" DATE,
     "Residence" VARCHAR,
-    "District" DEC,
-    "PSA_Announcement_Number" DEC,
+    "District" INT,
+    "PSA_Announcement_Number" INT,
     "Block_Address" VARCHAR,
     "Quadrant" VARCHAR,
     "ZIP_Code" VARCHAR,
@@ -59,3 +59,6 @@ CREATE TABLE "unique_dates" (
         "Object_ID"
      )
 );
+
+SELECT * FROM registry;
+SELECT * FROM unique_dates;
