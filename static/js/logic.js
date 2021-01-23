@@ -3,10 +3,11 @@ allURL = "http://127.0.0.1:5000/registry";
 uniqueURL = "http://127.0.0.1:5000/unique";
 
 d3.json(allURL).then(function(registryData) { 
-  // d3.json(uniqueURL).then(function(uniqueData) {
+  d3.json(uniqueURL).then(function(uniqueData) {
     console.log(registryData);
+    createAreaChart(uniqueData);
     createMarkers(registryData);
-  // });
+  });
 });
 
 function createMarkers(data) {
@@ -71,3 +72,47 @@ function createMap(offendersLayer) {
     collapsed: false
   }).addTo(myMap);
 };
+
+function createAreaChart(uniqueData) {
+  var container = document.getElementById('area-chart');
+  var data = {
+    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  };
+  // categories: [Months]
+  // series: [{
+  // name: Year,
+  // data: [number of added offenders per each month]
+  // }]
+
+  // when parsing datetime data, use indexes 12:16
+  // object of objects
+  var years = {};
+  
+  for (var i = 0; i < uniqueData.length; i++) {
+    var offender = uniqueData[i];
+
+    var year = parseInt(offender.Date_Registered.substring(12, 16));
+    var monthIndex = data.categories.indexOf(offender.Date_Registered.substring(8, 11));
+    console.log(year);
+    // if year already exists in object, update count for particular month
+    // if (year in years) {
+    //   years.year.data[monthIndex] += 1;
+    // }
+    // else {
+    //   // for each unique year, create a new object
+    //   years.year = {
+    //     'name': year,
+    //     'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    //   };
+    //   years.year.data[monthIndex] += 1;
+    // };
+  };
+
+  // data.series = years;
+  // console.log(data);
+  console.log(years);
+
+  var options = {
+
+  };
+}
