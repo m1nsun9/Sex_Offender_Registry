@@ -1,3 +1,4 @@
+// import chart from 'tui-chart';
 // connection to local host
 allURL = "http://127.0.0.1:5000/registry";
 uniqueURL = "http://127.0.0.1:5000/unique";
@@ -74,15 +75,11 @@ function createMap(offendersLayer) {
 };
 
 function createAreaChart(uniqueData) {
-  var container = document.getElementById('area-chart');
+  var container = document.getElementById('chart');
   var data = {
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    series: []
   };
-  // categories: [Months]
-  // series: [{
-  // name: Year,
-  // data: [number of added offenders per each month]
-  // }]
 
   // when parsing datetime data, use indexes 12:16
   // object of objects
@@ -93,26 +90,62 @@ function createAreaChart(uniqueData) {
 
     var year = parseInt(offender.Date_Registered.substring(12, 16));
     var monthIndex = data.categories.indexOf(offender.Date_Registered.substring(8, 11));
-    console.log(year);
     // if year already exists in object, update count for particular month
-    // if (year in years) {
-    //   years.year.data[monthIndex] += 1;
-    // }
-    // else {
-    //   // for each unique year, create a new object
-    //   years.year = {
-    //     'name': year,
-    //     'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    //   };
-    //   years.year.data[monthIndex] += 1;
-    // };
+    if (year in years) {
+      years[year].data[monthIndex] += 1;
+    }
+    else {
+      // for each unique year, create a new object
+      years[year] = {
+        'name': year,
+        'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      };
+      years[year].data[monthIndex] += 1;
+    };
   };
 
-  // data.series = years;
-  // console.log(data);
-  console.log(years);
+  for (const [key, value] of Object.entries(years)) {
+    data.series.push(value);
+  };
 
   var options = {
-
+    chart: {
+        width: 1160,
+        height: 540,
+        title: 'Sex Offenders Registered',
+        format: '1'
+    },
+    yAxis: {
+        title: 'Monthly Registers',
+        max: 40,
+        pointOnColumn: true
+    },
+    xAxis: {
+        title: 'Month'
+    },
+    series: {
+        stack: 'normal',
+        showDot: false,
+        areaOpacity: 1
+    },
+    tooltip: {
+        grouped: true
+    }
   };
-}
+
+  var theme = {
+    series: {
+        colors: [
+            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd',
+            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd',
+            '#83b14e', '#458a3f'
+        ]
+    }
+  };
+
+  console.log(data);
+
+  // tui.chart.areaChart(container, data, options);
+};
