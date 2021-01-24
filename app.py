@@ -1,5 +1,4 @@
 import numpy as np
-
 # from flask-cors import CORS
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -8,7 +7,7 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify, render_template
 
-rds_connection_string = f"postgres:postgres@localhost:5432/sex_offender_db"
+rds_connection_string = f"postgres:{password}@localhost:5432/sex_offender_db"
 engine = create_engine(f"postgresql://{rds_connection_string}")
 
 # reflect an existing database into a new model
@@ -32,6 +31,10 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/data")
+def data():
+    return render_template("data.html")
 
 @app.route("/registry", methods=["GET", "POST"])
 def registry():
