@@ -1,4 +1,3 @@
-// import chart from 'tui-chart';
 // connection to local host
 allURL = "http://127.0.0.1:5000/registry";
 uniqueURL = "http://127.0.0.1:5000/unique";
@@ -6,8 +5,9 @@ uniqueURL = "http://127.0.0.1:5000/unique";
 d3.json(allURL).then(function(registryData) { 
   d3.json(uniqueURL).then(function(uniqueData) {
     console.log(registryData);
-    createAreaChart(uniqueData);
     createMarkers(registryData);
+    createAreaChart(uniqueData);
+    createBarChart(uniqueData);
   });
 });
 
@@ -17,7 +17,7 @@ function createMarkers(data) {
     var height_feet = Math.floor(offender.Height_Inches/12);
     var height_inches = offender.Height_Inches - (height_feet * 12);
     return L.marker([offender.Latitude, offender.Longitude])
-        .bindPopup(`<h3>NAME: ${offender.First_Name} ${offender.Last_Name}</h3>
+        .bindPopup(`<h3>Name: ${offender.First_Name} ${offender.Last_Name}</h3>
         <p>Height: ${height_feet}'${height_inches}</p>
         <p>Hair Color: ${offender.Hair_Color}</p>
         <p>Eye Color: ${offender.Eye_Color}</p>`)
@@ -75,77 +75,189 @@ function createMap(offendersLayer) {
 };
 
 function createAreaChart(uniqueData) {
-  var container = document.getElementById('chart');
+  var ctx = document.getElementById('myAreaChart').getContext('2d');
   var data = {
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    series: []
+    type: 'line',
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: []
+    }
   };
 
   // when parsing datetime data, use indexes 12:16
   // object of objects
   var years = {};
-  
+
+  // create a list of colors to pull from randomly for each line
+  var randomColors = [
+    "#86a075", "#f4561a", "#f43115", "#96d7d3", "#c48fcd", "#ac98a3",
+    "#6733ef", "#2b7ea7", "#5a880a", "#e8abe1", "#db760b", "#809ccf",
+    "#96d33b", "#76d1db", "#f7839c", "#725cd2", "#d3b35f", "#024482",
+    "#38c244", "#9d01a6", "#f0ff66", "#f809d8"];
+
+  // loop through each datapoint and add a new object for previously unrecorded years
+  // and add tallies to dates registered for ones that have been recorded
   for (var i = 0; i < uniqueData.length; i++) {
     var offender = uniqueData[i];
 
     var year = parseInt(offender.Date_Registered.substring(12, 16));
-    var monthIndex = data.categories.indexOf(offender.Date_Registered.substring(8, 11));
+    var monthIndex = data.data.labels.indexOf(offender.Date_Registered.substring(8, 11));
+
     // if year already exists in object, update count for particular month
     if (year in years) {
       years[year].data[monthIndex] += 1;
     }
     else {
+      var randomColorIndex = Math.floor(Math.random() * randomColors.length);
       // for each unique year, create a new object
       years[year] = {
-        'name': year,
-        'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        'label': `${year}`,
+        'data': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        'fill': true,
+        'borderColor': randomColors[randomColorIndex],
+        'borderWidth': 1,
+        'hoverBackgroundColor': "rgba(214, 214, 214, 0.712)"
       };
+
+      // start tally for month
       years[year].data[monthIndex] += 1;
+      // drop used color from list
+      randomColors = randomColors.filter(color => color !== randomColors[randomColorIndex]);
     };
   };
 
+  // push each year object to the dataset list
   for (const [key, value] of Object.entries(years)) {
-    data.series.push(value);
+    data.data.datasets.push(value);
   };
 
-  var options = {
-    chart: {
-        width: 1160,
-        height: 540,
-        title: 'Sex Offenders Registered',
-        format: '1'
+  // add options object for styling
+  data["options"] = {
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false,
+        },
+        ticks: {
+          fontColor: "rgba(214, 214, 214, 0.712)"
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          fontColor: "rgba(214, 214, 214, 0.712)"
+        }
+      }]
     },
-    yAxis: {
-        title: 'Monthly Registers',
-        max: 40,
-        pointOnColumn: true
+    legend: {
+      display: true,
+      position: 'left',
+      labels: {
+        fontColor: "rgba(214, 214, 214, 0.712)",
+        fontSize: 10
+      },
     },
-    xAxis: {
-        title: 'Month'
+    tooltips: {
+      mode: "x",
+      displayColors: true,
+      callbacks: {
+        labelColor: function(tooltipItem, chart) {
+          return {
+            borderColor: data.data.datasets[tooltipItem.datasetIndex].borderColor,
+            backgroundColor: data.data.datasets[tooltipItem.datasetIndex].borderColor
+          }
+        }
+      }
     },
-    series: {
-        stack: 'normal',
-        showDot: false,
-        areaOpacity: 1
-    },
-    tooltip: {
-        grouped: true
-    }
+    responsive: true,
+    maintainAspectRatio: false
   };
-
-  var theme = {
-    series: {
-        colors: [
-            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd',
-            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd',
-            '#83b14e', '#458a3f'
-        ]
-    }
-  };
-
-  console.log(data);
-
-  // tui.chart.areaChart(container, data, options);
+  // initialize chart
+  var myChart = new Chart(ctx, data);
 };
+
+function createBarChart(uniqueData) {
+  var ctx = document.getElementById("myBarChart");
+  var data = {
+    labels: ["District 1", "District 2", "District 3", "District 4", "District 5", "District 6", "District 7"],
+    datasets: []
+  };
+
+  var classifications = {};
+  var randomColors = [
+    "#f82386", "#5e62c5"];
+
+  // separated by districts and classification 
+  for (var i = 0; i < uniqueData.length; i++) {
+    var offender = uniqueData[i];
+    
+    var district = `District ${offender.District}`;
+    var maxClassification = offender.Max_Classification;
+    var classIndex = data.labels.indexOf(district);
+
+    if (maxClassification in classifications) {
+      classifications[maxClassification].data[classIndex] += 1;
+    }
+    else {
+      var randomColorIndex = Math.floor(Math.random() * randomColors.length);
+      classifications[maxClassification] = {
+        label: maxClassification,
+        backgroundColor: randomColors[randomColorIndex],
+        data: [0, 0, 0, 0, 0, 0, 0]
+      };
+
+      // start tally for offender's district
+      classifications[maxClassification].data[classIndex] += 1;
+      // drop used color from list
+      randomColors = randomColors.filter(color => color !== randomColors[randomColorIndex]);
+    };
+  };
+
+  // push each year object to the dataset list
+  for (const [key, value] of Object.entries(classifications)) {
+    data.datasets.push(value);
+  };
+
+  var myChart = new Chart(ctx, {
+    type: "bar",
+    data: data,
+    options: {
+      tooltips: {
+        mode: 'x',
+        displayColors: true,
+        callbacks:{
+          mode: 'x',
+        },
+      },
+      scales: {
+        xAxes: [{
+          stacked: true,
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            fontColor: "rgba(214, 214, 214, 0.712)"
+          }
+        }],
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            beginAtZero: true,
+            fontColor: "rgba(214, 214, 214, 0.712)"
+          },
+          type: 'linear'
+        }]
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: { 
+        position: 'right',
+        labels: {
+          fontColor: "rgba(214, 214, 214, 0.712)",
+          fontSize: 10
+        },
+      },
+    }
+  });
+};
+
+// create a filter function
