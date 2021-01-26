@@ -2,14 +2,24 @@
 allURL = "http://127.0.0.1:5000/registry";
 uniqueURL = "http://127.0.0.1:5000/unique";
 
+var myMap, myAreaChart, myBarChart;
+
 d3.json(allURL).then(function(registryData) { 
   d3.json(uniqueURL).then(function(uniqueData) {
     console.log(registryData);
-    createMarkers(registryData);
-    createAreaChart(uniqueData);
-    createBarChart(uniqueData);
+    myMap = createMarkers(registryData);
+    myAreaChart = createAreaChart(uniqueData);
+    myBarChart = createBarChart(uniqueData);
+
   });
 });
+
+// run event listener
+var filterButton = d3.select("#filter-btn");
+var form = d3.select("form");
+
+filterButton.on("click", runFilter);
+form.on("change", runFilter);
 
 function createMarkers(data) {
   var markers = L.markerClusterGroup();
@@ -31,7 +41,8 @@ function createMarkers(data) {
     };
   };
 
-  createMap(markers);
+  var myMap = createMap(markers);
+  return myMap;
 };
 
 function createMap(offendersLayer) {
@@ -71,6 +82,8 @@ function createMap(offendersLayer) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+  return myMap;
 };
 
 function createAreaChart(uniqueData) {
@@ -172,6 +185,8 @@ function createAreaChart(uniqueData) {
   };
   // initialize chart
   var myChart = new Chart(ctx, data);
+
+  return myChart;
 };
 
 function createBarChart(uniqueData) {
@@ -257,6 +272,44 @@ function createBarChart(uniqueData) {
       },
     }
   });
+
+  return myChart;
 };
 
 // create a filter function
+function runFilter() {
+
+  var zipInputField = d3.select("#zipcode");
+  var zipInputValue = zipInputField.property("value");
+
+  console.log(zipInputValue);
+
+
+  // prevent page from refreshing
+  // d3.event.preventDefault();
+  d3.json(allURL).then(function(registryData) { 
+    d3.json(uniqueURL).then(function(uniqueData) {
+    
+      var filteredMapData = registryData.filter(offender => offender.ZIP_Code === zipInputValue);
+      var filteredChartData = uniqueData.filter(offender => offender.ZIP_Code === zipInputValue);
+    
+      if (filteredMapData && filteredChartData) {
+        // remove existing map data
+        myMap.remove();
+        myMap = null;
+
+        // remove existing area chart data
+        myAreaChart.destroy();
+        // console.log(myAreaChart)
+        myBarChart.destroy();
+      };
+
+      // redraw map with new markers
+      myMap = createMarkers(filteredMapData);
+      // redraw area chart and bar chart with filtered data
+      myAreaChart = createAreaChart(filteredChartData);
+      myBarChart = createBarChart(filteredChartData);
+    });
+  });
+
+};

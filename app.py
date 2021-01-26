@@ -7,6 +7,8 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify, render_template
 
+password = "postgres"
+
 rds_connection_string = f"postgres:{password}@localhost:5432/sex_offender_db"
 engine = create_engine(f"postgresql://{rds_connection_string}")
 
