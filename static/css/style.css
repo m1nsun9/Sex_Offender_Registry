@@ -12,7 +12,7 @@ body {
 }
 
 #map {
-  width: 900px;
+  width: 100%;
   height: 500px;
 }
 
@@ -84,8 +84,40 @@ select {
   margin-top: 50px;
 }
 
+
 .margin-top-50 {
   margin-top: 50px;
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.areachartdiv {
+  margin-top: 40px;
+}
+
+#mapText {
+  margin-top: 50px;
+  margin-left: 45%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(214, 214, 214, 0.712);
+}
+
+#areaText {
+  margin-top: 50px;
+  margin-bottom: -20px;
+  padding-bottom: 0px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(214, 214, 214, 0.712);
+}
+
+#barText {
+  margin-top: 50px;
+  padding-bottom: 0px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(214, 214, 214, 0.712);
 }
 
 /* The styles for the parallax */
@@ -173,6 +205,7 @@ td {
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #680000;
+
 }
 
 .form-control::-moz-placeholder {
@@ -240,4 +273,12 @@ td {
   to {
     opacity: 1;
   }
+}
+
+  color: #8e979f;
+}
+
+#myAreaChart {
+  width: 100%;
+  height: 100%;
 }
