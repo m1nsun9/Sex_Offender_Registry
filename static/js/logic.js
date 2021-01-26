@@ -12,27 +12,26 @@ d3.json(allURL).then(function(registryData) {
 });
 
 function createMarkers(data) {
-  // on each individual datapoint, create bindpopup with information
-  function onEachMarker(offender) {
-    var height_feet = Math.floor(offender.Height_Inches/12);
-    var height_inches = offender.Height_Inches - (height_feet * 12);
-    return L.marker([offender.Latitude, offender.Longitude])
-        .bindPopup(`<h3>Name: ${offender.First_Name} ${offender.Last_Name}</h3>
-        <p>Height: ${height_feet}'${height_inches}</p>
-        <p>Hair Color: ${offender.Hair_Color}</p>
-        <p>Eye Color: ${offender.Eye_Color}</p>`)
-  };
-
-  // see if we can change this method to use L.markerClusterGroup()
-  var offenders = [];
+  var markers = L.markerClusterGroup();
 
   for (var i = 0; i < data.length; i++) {
-    offenders.push(onEachMarker(data[i]));
+
+    var offender = data[i];
+    var location = [offender.Latitude, offender.Longitude];
+    var height_feet = Math.floor(offender.Height_Inches/12);
+    var height_inches = offender.Height_Inches - (height_feet * 12);
+
+    // on each individual datapoint, create bindpopup with information
+    if (location) {
+      markers.addLayer(L.marker(location)
+          .bindPopup(`<h3>Name: ${offender.First_Name} ${offender.Last_Name}</h3>
+          <p>Height: ${height_feet}'${height_inches}</p>
+          <p>Hair Color: ${offender.Hair_Color}</p>
+          <p>Eye Color: ${offender.Eye_Color}</p>`))
+    };
   };
 
-  var offendersLayer = L.layerGroup(offenders);
-
-  createMap(offendersLayer);
+  createMap(markers);
 };
 
 function createMap(offendersLayer) {
