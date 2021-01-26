@@ -8,7 +8,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  color: black
+  color: white;
 }
 
 #map {
@@ -16,38 +16,42 @@ body {
   height: 500px;
 }
 
+.
+
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
 .wrapper {
   position: relative;
   min-height: 100%;
   padding-bottom: 130px;
-  background: linear-gradient(to top, #ff0000 7%, #ffffff 100%);
+  background:  #1b3146 100%;
 }
 
 /* The footer is positioned at the bottom of the page */
 .footer {
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100%;
   min-height: 100px;
   background: #808080;
 }
 
 /* The code styles the text at the bottom of the footer */
 .footer > .bottom {
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100%;
   padding: 5px;
-  background: #606060;
+  background: #263544;
 }
 
 .navbar {
   padding: 5px;
   margin: 0;
-  background-color: #606060;
+  background-color: #263544;
 }
 
 /* This CSS styles the nav icon in the navbar */
@@ -87,6 +91,7 @@ select {
 
 .margin-top-50 {
   margin-top: 50px;
+}
 
 .margin-top-20 {
   margin-top: 20px;
@@ -98,7 +103,8 @@ select {
 
 #mapText {
   margin-top: 50px;
-  margin-left: 45%;
+  text-align: center;
+  margin-left: 10%;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(214, 214, 214, 0.712);
 }
@@ -149,21 +155,21 @@ select {
 
 .divtop{
   background-color: black;
-  color: black
-  z-index:2;
+  color: black;
+  z-index: 2;
 }
 
 .divbdy{
   background-color: black;
-  color: black
-  z-index:1;
+  color: black;
+  z-index: 1;
 }
 
 .divtable{
   text-align:center;
   background-color: black;
-  color: black
-  z-index:1;
+  color: white;
+  z-index: 1;
 }
 
 .divbtm {
@@ -182,17 +188,17 @@ select {
 table {
   width: 100%;
   /* background-color: #D3D3D3; */
-  color: black;
+  color: white;
 }
 
 tr { 
-  border: 1px solid black;
-  color: black 
+  border: 1px solid white;
+  color: white 
 }
 
 td { 
-  border: 1px solid black;
-  color: black; 
+  border: 1px solid white;
+  color: white; 
 }
 
 #table-scroll {
@@ -223,18 +229,22 @@ td {
   color: #680000;
 }
 
+#table-area tr td:first-child {
+  background: #1b3146;
+}
+
 /* media queries which will only be activated at specific screen sizes */
 @media (max-width: 800px) {
   #table-area td {
     font-size: 1em;
-    color: black
+    color: white;
   }
 }
 
 @media (max-width: 500px) {
   #table-area thead {
     display: none;
-    color: black;
+    color: white;
   }
 
   .hero h1 {
@@ -273,9 +283,6 @@ td {
   to {
     opacity: 1;
   }
-}
-
-  color: #8e979f;
 }
 
 #myAreaChart {
