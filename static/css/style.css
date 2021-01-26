@@ -8,6 +8,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  color: black
 }
 
 #map {
@@ -20,7 +21,7 @@ body {
   position: relative;
   min-height: 100%;
   padding-bottom: 130px;
-  overflow: auto;
+  background: linear-gradient(to top, #ff0000 7%, #ffffff 100%);
 }
 
 /* The footer is positioned at the bottom of the page */
@@ -30,7 +31,7 @@ body {
   bottom: 0;
   left: 0;
   min-height: 100px;
-  background: #4e5d6c;
+  background: #808080;
 }
 
 /* The code styles the text at the bottom of the footer */
@@ -40,19 +41,20 @@ body {
   bottom: 0;
   left: 0;
   padding: 5px;
-  background: #1b3146;
+  background: #606060;
 }
 
 .navbar {
   padding: 5px;
   margin: 0;
+  background-color: #606060;
 }
 
 /* This CSS styles the nav icon in the navbar */
 .nav-icon {
   position: absolute;
   bottom: 5px;
-  left: 210px;
+  left: 0px;
   width: 35px;
   color: white;
 }
@@ -81,6 +83,10 @@ select {
 .loader {
   margin-top: 50px;
 }
+
+
+.margin-top-50 {
+  margin-top: 50px;
 
 .margin-top-20 {
   margin-top: 20px;
@@ -122,8 +128,8 @@ select {
   margin: 0;
   background: black;
   background-image: url("../header.jpg");
-  background-attachment: fixed;
-  background-position: center;
+  background-attachment: scroll;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: initial;
 }
@@ -141,85 +147,98 @@ select {
   animation-delay: 1.2s;
 }
 
+.divtop{
+  background-color: black;
+  color: black
+  z-index:2;
+}
+
+.divbdy{
+  background-color: black;
+  color: black
+  z-index:1;
+}
+
+.divtable{
+  text-align:center;
+  background-color: black;
+  color: black
+  z-index:1;
+}
+
+.divbtm {
+  width:100%;
+  /* position:absolute; */
+  bottom:0;
+  background-color: black;
+  z-index:0;
+  font-size: 12px;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  margin: 0px;
+}
+
+table {
+  width: 100%;
+  /* background-color: #D3D3D3; */
+  color: black;
+}
+
+tr { 
+  border: 1px solid black;
+  color: black 
+}
+
+td { 
+  border: 1px solid black;
+  color: black; 
+}
+
+#table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+}
+
 /* input placeholder color changes */
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #8e979f;
+  color: #680000;
+
 }
 
 .form-control::-moz-placeholder {
   /* Firefox 19+ */
-  color: #8e979f;
+  color: #680000;
 }
 
 .form-control:-ms-input-placeholder {
   /* IE 10+ */
-  color: #8e979f;
+  color: #680000;
 }
 
 .form-control:-moz-placeholder {
   /* Firefox 18- */
-  color: #8e979f;
-}
-
-#myAreaChart {
-  width: 100%;
-  height: 100%;
+  color: #680000;
 }
 
 /* media queries which will only be activated at specific screen sizes */
 @media (max-width: 800px) {
-  
+  #table-area td {
+    font-size: 1em;
+    color: black
+  }
 }
 
 @media (max-width: 500px) {
   #table-area thead {
     display: none;
-  }
-
-  #table-area tr td:first-child {
-    font-size: 1.8em;
-    font-weight: bold;
-    background: #1b3146;
-  }
-
-  #table-area tr td:last-child {
-    margin-bottom: 20px;
-  }
-
-  #table-area tr td:last-child::after {
-    display: block;
-    width: 100%;
-    height: 1px;
-    margin-top: 20px;
-    content: " ";
-    background: aliceblue;
-  }
-
-  #table-area td {
-    font-size: 1.25em;
-  }
-
-  #table-area tbody td {
-    display: block;
-    text-align: center;
-  }
-
-  #table-area tbody td::before {
-    display: block;
-    font-size: 1.4em;
-    font-weight: bold;
-    text-align: center;
-    content: attr(data-th);
+    color: black;
   }
 
   .hero h1 {
     animation: smaller-title 1.2s forwards linear;
-  }
-
-  #map {
-    width: 100%;
-    height: 100%;
   }
 }
 
@@ -254,4 +273,12 @@ select {
   to {
     opacity: 1;
   }
+}
+
+  color: #8e979f;
+}
+
+#myAreaChart {
+  width: 100%;
+  height: 100%;
 }
