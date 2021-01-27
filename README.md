@@ -9,6 +9,8 @@
  
  We first used Leaflet.js to create an interactive map of all recorded sex offenders in Washington D.C. Each marker cluster represents a number of offenders in that area, and each marker, when selected, will show comprehensive information on the name as well as a few of the physical traits of each particular offender.
 
+![]('screenshots/map-clusters.png')
+![]('screenshots/map-markers.png')
 
  
 Data Source: https://www.kaggle.com/karnikakapoor/sex-offender-registry
