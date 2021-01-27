@@ -24,7 +24,6 @@ Unique = Base.classes.unique_dates
 # Flask Setup
 #################################################
 app = Flask(__name__)
-# CORS(app)
 
 
 #################################################
