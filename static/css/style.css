@@ -16,13 +16,14 @@ body {
   height: 500px;
 }
 
-.
+.mapHeader {
+  margin-top: 50px;
+}
 
 /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
 .wrapper {
   position: relative;
   min-height: 100%;
-  padding-bottom: 130px;
   background:  #1b3146 100%;
 }
 
@@ -32,20 +33,57 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  margin-top: 20px;
   width: 100%;
-  min-height: 100px;
+  min-height: 50px;
   background: #808080;
+  color: #1b3146;
 }
 
+.description-text {
+  color:rgba(214, 214, 214, 0.712);
+}
+
+.description-header {
+  color:rgba(214, 214, 214, 0.712);
+}
+
+.table {
+  color:rgba(214, 214, 214, 0.712);
+}
+
+/* map text styling */
+#mapDescription {
+  text-align: left;
+  color:rgba(214, 214, 214, 0.712);
+}
+
+.introduction {
+  color:rgba(214, 214, 214, 0.712);
+}
+
+#areaDescription {
+  text-align: left;
+  margin-top: 20px;
+  color:rgba(214, 214, 214, 0.712);
+}
+
+#barDescription {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color:rgba(214, 214, 214, 0.712);
+}
+ 
 /* The code styles the text at the bottom of the footer */
 .footer > .bottom {
   position: relative;
-  right: 0;
-  bottom: 0;
+  margin-left: 5%;
+  margin-top: 50px;
   left: 0;
   width: 100%;
-  padding: 5px;
-  background: #263544;
+  padding: 0px;
+  /* background: #263544; */
 }
 
 .navbar {
@@ -104,7 +142,6 @@ select {
 #mapText {
   margin-top: 50px;
   text-align: center;
-  margin-left: 10%;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(214, 214, 214, 0.712);
 }
@@ -188,7 +225,7 @@ select {
 table {
   width: 100%;
   /* background-color: #D3D3D3; */
-  color: white;
+  color:rgba(214, 214, 214, 0.712);
 }
 
 tr { 

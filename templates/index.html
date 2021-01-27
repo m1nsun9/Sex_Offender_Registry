@@ -44,24 +44,27 @@
     </div>
     <div class="container">
       <div class="mapHeader">
-        <h3 id="mapText">Map of DC Sex Offenders</h3>
-        <h4><p class="text-muted">One of the most interesting yet most obscure government health databases is the United States
+        
+        <h4 class="introduction">&emsp;One of the most interesting yet most obscure government health databases is the United States
            Department of Justice’s National Sex Offender Public Website. A list of offenders with past offenses, the purpose of 
-           the data source is to allow the public to protect themselves and their children. We will be utilizing a Kaggle dataset 
-           on all sex offenders that are registered within the Washington D.C. area that utilizes the DOJ’s National Sex Offender 
-           Public Website to create a more comprehensive data set with more metadata, including classification type and coordinates
-            of their whereabouts. Our objective is to create a dynamic dashboard with a map showing coordinates of filtered offenders, 
-            a line chart with filtered dates of added offenders, and a filtered bar chart of the different offense types by Zip Code.
+           the data source is to allow the public to protect themselves and their children. The purpose of this project was to utilize a Kaggle dataset 
+           on all sex offenders that are registered within the Washington D.C. area that pulls data from the DOJ’s National Sex Offender 
+           Public Website to create a comprehensive set of data visualizations, including classification type and coordinates
+            of their whereabouts.
+            <br>
+            <br>
+            Our targeted objectives were to create a dynamic dashboard with a map showing coordinates of filtered offenders, 
+            a line chart with dates of added offenders, and a bar chart of the different offense types by Zip Code, as well as a system for filtering
+            by ZIP Code for all three visualizations. A table of relevant information can be found by clicking on the <i>Data</i> tab in the Navigation Bar.
           <br>
           <br>
-          To accomplish this analysis, we first pulled data from the DC Sex Offender DC data from website 
-          (https://www.kaggle.com/karnikakapoor/sex-offender-registry)
-          
-          <br>
-          <br>
-          After creating a csv dataset, we used jupyter notebook for data cleaning and created database in PostgreSQL.
-          </p>
-      </h4>
+          The full DC Sex Offender Registry dataset can be found <a href="https://www.kaggle.com/karnikakapoor/sex-offender-registry">here</a>.
+        </h4>
+        <h3 id="mapText">Map of DC Sex Offenders</h3>
+        <p id="mapDescription">This map was created using Leaflet.js to visualize an interactive map of all recorded sex offenders in Washington D.C. Each
+          marker cluster represents a number of offenders in that area, and each marker, when selected, will show comprehensive information on
+          the name as well as a few of the physical traits of each particular offender.
+        </p>
       </div>
       <div class="row margin-top-20">
         <div class="col-md-2">
@@ -89,17 +92,13 @@
         </div>
       </div>
       <div>
-        <h3 id="areaText">Sex Offenders Registered</h3>
+        <h3 id="areaText">Registration Dates</h3>
         <br>
-        <h4><p class="text-muted">The purpose of this project was to analyze how weather changes as you get closer to the equator.
-          To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities.
-          <br>
-          <br>
-          After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude.
-          Factors we looked at included: temperature, cloudiness, wind speed, and humidity.
-          This site provides the source data and vizualizations created as part of the analysis, as well as explanations and descriptions
-          of any trends and correlations witnessed.</p>
-      </h4>
+        <p id="areaDescription">
+          This line chart was constructed using Chart.js to visualize the different registration dates of all recorded offenders in the 
+        dataset. Each line represents a different year, and each point represents the number of offenders that were registered for that month.
+        Clicking on a particular year on the legend removes or adds that year from the graph, allowing a more isolated visualization for 
+        a particular subset of years.</p>
       </div>
       <div class="areachartdiv row">
         <div>
@@ -108,15 +107,13 @@
       </div>
       <div>
         <h3 id="barText">Max Classifications by District</h3>
-        <h4><p class="text-muted">The purpose of this project was to analyze how weather changes as you get closer to the equator.
-          To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities.
-          <br>
-          <br>
-          After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs. latitude.
-          Factors we looked at included: temperature, cloudiness, wind speed, and humidity.
-          This site provides the source data and vizualizations created as part of the analysis, as well as explanations and descriptions
-          of any trends and correlations witnessed.</p>
-      </h4>
+        <p id="barDescription">
+          The final visualization is a bar chart separating the offenders on our list by their district of residence in D.C. and each offender's
+          respective Maximum Classification for their offense(s). According to the Metropolitan Police Department, Class A offenders have been convicted of,
+          or found not guilty by reason of insanity of a myriad of sexual offenses that can be found <a href="https://mpdc.dc.gov/service/offender-classifications">here</a>.
+          Class B offenders have been convicted of, or found not guilty by reason of insanity to the same sexual offenses against a minor, or a person under the
+          age of 18.
+        </p>
       </div>
       <div class="barchartdiv row">
           <canvas id="myBarChart" width="100%" height="700px"></canvas>
