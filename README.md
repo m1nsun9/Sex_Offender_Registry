@@ -9,8 +9,17 @@
  
  We first used Leaflet.js to create an interactive map of all recorded sex offenders in Washington D.C. Each marker cluster represents a number of offenders in that area, and each marker, when selected, will show comprehensive information on the name as well as a few of the physical traits of each particular offender.
 
-![]('screenshots/map-clusters.png')
-![]('screenshots/map-markers.png')
+![](screenshots/map-clusters.png)
+![](screenshots/map-markers.png)
 
+We utilized Javascript visualization library Chart.js for both the line and bar charts. The line chart represents all of the different years recorded in the dataset, and each point represents the number of offenders that were registered for that month. Clicking on a particular year on the legend removes or adds that year from the graph, allowing a more isolated visualization for a particular subset of years. When you hover over a set of points on the same x-axis, you’ll be given a list of all the offenders that were registered for that month across each year.
+
+![](screenshots/area-chart)
+
+The final visualization is a bar chart separating the offenders on our list by their district of residence in D.C. and each offender's respective Maximum Classification for their offense(s). According to the Metropolitan Police Department, Class A offenders have been convicted of, or found not guilty by reason of insanity of a myriad of sexual offenses that can be found [here](https://mpdc.dc.gov/service/offender-classifications). Class B offenders have been convicted of, or found not guilty by reason of insanity to the same sexual offenses against a minor, or a person under the age of 18. When you hover over a bar from a specific district you’ll be given a list of offenders for both classifications that reside in that district. 
+
+![](screenshots/bar-chart)
+
+We also included a filter feature that would actively filter the data used for the three visualizations to dynamically update them by ZIP Code. When a DC ZIP Code is entered, a runFilter() function is fired off with an event listener, updating the map and graphs to only include individuals who reside in the chosen area.
  
 Data Source: https://www.kaggle.com/karnikakapoor/sex-offender-registry
