@@ -1,11 +1,9 @@
 appnope==0.1.0
 backcall==0.2.0
 beautifulsoup4==4.9.3
-bleach @ file:///tmp/build/80754af9/bleach_1600439572647/work
 bs4==0.0.1
 census==0.8.15
 certifi==2020.6.20
-cffi @ file:///opt/concourse/worker/volumes/live/e2eb91c2-780d-4f74-545d-c2827857ffe3/volume/cffi_1600699193708/work
 chardet==3.0.4
 citipy==0.0.5
 click==7.1.2
@@ -23,18 +21,12 @@ geojson==2.5.0
 gmaps==0.9.0
 gunicorn==20.1.0
 idna==2.10
-importlib-metadata @ file:///opt/concourse/worker/volumes/live/c15100a6-3aca-4bde-70bd-9279a634b55b/volume/importlib-metadata_1593446478014/work
-ipykernel @ file:///opt/concourse/worker/volumes/live/43eaf185-e9cd-4e78-5afa-c19accf1339d/volume/ipykernel_1596206683810/work/dist/ipykernel-5.3.4-py3-none-any.whl
-ipython @ file:///opt/concourse/worker/volumes/live/8c453bb6-500b-4747-778c-a236ae4a574d/volume/ipython_1593447395779/work
 ipython-genutils==0.2.0
-ipywidgets @ file:///home/conda/feedstock_root/build_artifacts/ipywidgets_1599554010055/work
 itsdangerous==1.1.0
-jedi @ file:///opt/concourse/worker/volumes/live/565dbe5a-443f-465a-7ff2-b61f4a5f081d/volume/jedi_1598371617578/work
 jellyfish==0.6.1
 Jinja2==2.11.2
 joblib==0.17.0
 jsonschema==3.2.0
-jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1594826976318/work
 jupyter-core==4.6.3
 kdtree==0.16
 kiwisolver==1.2.0
@@ -45,27 +37,19 @@ mistune==0.8.4
 mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
-nb-conda-kernels @ file:///opt/concourse/worker/volumes/live/b717db36-b247-43bc-4b51-c10553a2ea2a/volume/nb_conda_kernels_1600445353045/work
 nbconvert==5.6.1
 nbformat==5.0.7
-notebook @ file:///opt/concourse/worker/volumes/live/6e64265a-9c5a-4637-5003-b9c6bd3edc95/volume/notebook_1596838649006/work
-numpy @ file:///opt/concourse/worker/volumes/live/3f9886a9-9d2f-4d0a-7e31-acf5536b90f1/volume/numpy_and_numpy_base_1596234665264/work
 packaging==20.4
-pandas @ file:///opt/concourse/worker/volumes/live/06184e62-4873-4c9d-6684-e81c4eb76ca5/volume/pandas_1598371475329/work
 pandocfilters==1.4.2
 parso==0.7.0
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==7.2.0
 prometheus-client==0.8.0
-prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
 psycopg2-binary==2.8.6
 ptyprocess==0.6.0
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
-Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
 pymongo==3.11.1
 pyparsing==2.4.7
-pyrsistent @ file:///opt/concourse/worker/volumes/live/d7ed6755-1956-4a16-5499-c03638db758d/volume/pyrsistent_1600141722278/work
 python-dateutil==2.8.1
 pytz==2020.1
 pyzmq==19.0.2
@@ -86,9 +70,7 @@ tornado==6.0.4
 traitlets==4.3.3
 urllib3==1.25.10
 us==2.0.2
-wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 webdriver-manager==3.2.2
 webencodings==0.5.1
 Werkzeug==1.0.1
-widgetsnbextension @ file:///Users/runner/miniforge3/conda-bld/widgetsnbextension_1594164358341/work
 zipp==3.1.0
