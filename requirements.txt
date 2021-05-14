@@ -1,6 +1,4 @@
 appnope==0.1.0
-argon2-cffi @ file:///opt/concourse/worker/volumes/live/b46b812d-eebc-4040-75c0-7fc24d9bfd54/volume/argon2-cffi_1596828479252/work
-attrs @ file:///tmp/build/80754af9/attrs_1600298409949/work
 backcall==0.2.0
 beautifulsoup4==4.9.3
 bleach @ file:///tmp/build/80754af9/bleach_1600439572647/work
